@@ -12,6 +12,7 @@ class DatabaseHelper {
   String colId = 'id';
   String colTitle = 'title';
   String colDescription = 'description';
+  String colDate = 'date';
 
   DatabaseHelper._createInstance();
 
@@ -43,7 +44,8 @@ class DatabaseHelper {
         '('
         '$colId INTEGER PRIMARY KEY AUTOINCREMENT,'
         '$colTitle TEXT,'
-        '$colDescription TEXT'
+        '$colDescription TEXT,'
+        '$colDate TEXT'
         ')');
   }
 

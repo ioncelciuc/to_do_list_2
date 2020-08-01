@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:to_do_list_2/models/task.dart';
 import 'package:to_do_list_2/utils/database_helper.dart';
 
@@ -114,6 +115,7 @@ class _TaskDetailState extends State<TaskDetail> {
 
   void _save(BuildContext context, Task task) async {
     navigateToLastScreen();
+    task.date = DateFormat.yMMMd().format(DateTime.now());
     int result;
     if (task.id == null) {
       result = await databaseHelper.insertTask(task);

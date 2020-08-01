@@ -35,7 +35,7 @@ class _TaskListState extends State<TaskList> {
               elevation: 2.0,
               child: ListTile(
                 title: Text(this.taskList[index].title, maxLines: 1),
-                subtitle: Text(this.taskList[index].description, maxLines: 1),
+                subtitle: Text(this.taskList[index].date, maxLines: 1),
                 trailing: IconButton(
                   icon: Icon(Icons.delete),
                   onPressed: () {

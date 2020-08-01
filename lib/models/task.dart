@@ -2,6 +2,7 @@ class Task {
   int _id;
   String _title;
   String _description;
+  String _date;
 
   Task(this._title, this._description);
 
@@ -13,12 +14,18 @@ class Task {
 
   String get description => _description;
 
+  String get date => _date;
+
   set title(String title) {
     this._title = title;
   }
 
   set description(String description) {
     this._description = description;
+  }
+
+  set date(String date){
+    this._date = date;
   }
 
   // Convert Task object to a Map object
@@ -29,6 +36,7 @@ class Task {
     }
     map['title'] = _title;
     map['description'] = _description;
+    map['date'] = _date;
     return map;
   }
 
@@ -37,5 +45,6 @@ class Task {
     this._id = map['id'];
     this._title = map['title'];
     this._description = map['description'];
+    this._date = map['date'];
   }
 }
