@@ -58,15 +58,13 @@ class DatabaseHelper {
 
   Future<int> insertTask(Task task) async {
     Database db = await this.database;
-    var result =
-        db.rawInsert('INSERT INTO $taskTable($colTitle, $colDescription) '
-            'VALUES (${task.title}, ${task.description})');
+    var result = await db.insert(taskTable, task.toMap());
     return result;
   }
 
   Future<int> updateTask(Task task) async {
     Database db = await this.database;
-    var result = db.rawUpdate('UPDATE $taskTable SET '
+    var result = await db.rawUpdate('UPDATE $taskTable SET '
         '$colTitle = ${task.title}, $colDescription = ${task.description}'
         'WHERE $colId = ${task.id}');
     return result;
@@ -74,7 +72,8 @@ class DatabaseHelper {
 
   Future<int> deleteTask(int id) async {
     Database db = await this.database;
-    var result = db.rawDelete('DELETE FROM $taskTable WHERE $colId = $id');
+    var result =
+        await db.rawDelete('DELETE FROM $taskTable WHERE $colId = $id');
     return result;
   }
 
@@ -86,11 +85,11 @@ class DatabaseHelper {
     return result;
   }
 
-  Future<List<Task>> convertMapToTask() async {
+  Future<List<Task>> getTaskList() async {
     var taskMapList = await getTaskMapList();
     int count = taskMapList.length;
     List<Task> taskList = List<Task>();
-    for(int i=0;i<count;i++){
+    for (int i = 0; i < count; i++) {
       taskList.add(Task.fromMapToObject(taskMapList[i]));
     }
     return taskList;
