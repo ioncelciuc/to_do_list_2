@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_list_2/pages/task_detail.dart';
 
 class TaskList extends StatefulWidget {
   @override
@@ -23,24 +24,36 @@ class _TaskListState extends State<TaskList> {
               color: Colors.white,
               elevation: 2.0,
               child: ListTile(
-                  title: Text('Titlu'),
-                  subtitle: Text('Descriere'),
-                  trailing: IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: () {
-                      print('apasat pe delete');
-                    },
-                  )),
+                title: Text('Titlu'),
+                subtitle: Text('Descriere'),
+                trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () {
+                    print('apasat pe delete');
+                  },
+                ),
+                onTap: () {
+                  navigateToDetail();
+                },
+              ),
             ),
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
+          navigateToDetail();
         },
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  void navigateToDetail() async{
+    bool response = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => TaskDetail()),
+    );
+    print(response == true ? 'merge' : 'NU merge');
   }
 }
